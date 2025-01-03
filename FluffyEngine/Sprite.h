@@ -15,6 +15,7 @@ namespace Fluffy
 		void Update(const float deltaTime) override;
 		void Render() const override;
 		void SetTexture(const std::string& fileName);
+		void SetColor(const glm::vec3& color);
 		inline glm::vec2 GetTextureSize() const { return m_pTexture->GetSize(); }
 		Rectf GetRect() const;
 

@@ -2,10 +2,15 @@
 #include "Component.h"
 #include "FlyFish.h"
 
+namespace Fluffy
+{
+	class GameObject;
+}
+
 class PPGAMovement final : public Fluffy::Component
 {
 public:
-	PPGAMovement(class Fluffy::GameObject* pOwner, class PPGATransform* pOwnerTransform, const ThreeBlade& defaultVelocity, const ThreeBlade& maxVelocity);
+	PPGAMovement(Fluffy::GameObject* pOwner, class PPGATransform* pOwnerTransform, const ThreeBlade& defaultVelocity, const ThreeBlade& maxVelocity);
 	~PPGAMovement() = default;
 	void Update(const float deltaTime);
 	void SpeedUp();

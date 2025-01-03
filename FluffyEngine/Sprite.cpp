@@ -56,4 +56,10 @@ namespace Fluffy
 	{
 		m_pTexture = ResourceManager::GetInstance().LoadTexture(fileName);
 	}
+
+	void Sprite::SetColor(const glm::vec3& color)
+	{
+		if (m_pTexture != nullptr)
+			SDL_SetTextureColorMod(m_pTexture->GetSDLTexture(), Uint8(color.x), Uint8(color.y), Uint8(color.z));
+	}
 }
