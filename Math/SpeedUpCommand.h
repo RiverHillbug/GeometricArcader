@@ -1,13 +1,16 @@
 #pragma once
-#include <iostream>
 #include "FluffyEngine.h"
 #include "Command.h"
+#include "PPGAMovement.h"
 
 
 class SpeedUpCommand final : public Fluffy::Command
 {
 public:
-	SpeedUpCommand() = default;
+	SpeedUpCommand(PPGAMovement* pOwnerMovement)
+		: m_pOwnerMovement{ pOwnerMovement }
+	{
+	}
 	~SpeedUpCommand() = default;
 
 	SpeedUpCommand(const SpeedUpCommand& other) = default;
@@ -17,6 +20,9 @@ public:
 
 	void Execute()
 	{
-		std::cout << "Speeding up." << std::endl;
+		m_pOwnerMovement->SpeedUp();
 	}
+
+private:
+	PPGAMovement* m_pOwnerMovement;
 };

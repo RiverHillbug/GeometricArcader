@@ -7,10 +7,21 @@ PPGATransform::PPGATransform(Fluffy::GameObject* pOwner, const ThreeBlade& posit
 	: Fluffy::Component(pOwner)
 	, m_Position{ position }
 {
+	UpdateGameObjectTransform();
 }
 
 void PPGATransform::Update(const float)
 {
+
+}
+
+void PPGATransform::Translate(ThreeBlade translation)
+{
+	m_Position += translation;
+
+	if (m_Position[2] >= m_MaxEnergy[2])
+		m_Position[2] = m_MaxEnergy[2];
+
 	UpdateGameObjectTransform();
 }
 

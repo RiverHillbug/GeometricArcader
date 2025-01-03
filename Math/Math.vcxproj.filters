@@ -39,6 +39,9 @@
     <ClCompile Include="PPGATransform.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="PPGAMovement.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FPSCounter.h">
@@ -72,6 +75,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="PPGATransform.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PPGAMovement.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

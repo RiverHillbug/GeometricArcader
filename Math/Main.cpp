@@ -31,6 +31,8 @@
 #include "SoundManager.h"
 #include "SpeedUpCommand.h"
 #include "PPGATransform.h"
+#include "PPGAMovement.h"
+#include <FlyFish.h>
 
 using namespace Fluffy;
 
@@ -39,13 +41,16 @@ static void CreateScene()
 	auto& scene = SceneManager::GetInstance().CreateScene("MainScene");
 
 	std::unique_ptr<GameObject> m_pPlayer = std::make_unique<GameObject>();
-	m_pPlayer->AddComponent<PPGATransform>(ThreeBlade(100.0f, 100.0f, 0.0f));
+	PPGATransform* const pPlayerTransform{ m_pPlayer->AddComponent<PPGATransform>(ThreeBlade(100.0f, 100.0f, 100.0f)) };
+	const ThreeBlade defaultVelocity{ ThreeBlade(50.0f, 0.0f, 10.0f) };
+	const ThreeBlade maxVelocity{ ThreeBlade(100.0f, 0.0f, -50.0f) };
+	PPGAMovement* const pPlayerMovementComponent { m_pPlayer->AddComponent<PPGAMovement>(pPlayerTransform, defaultVelocity, maxVelocity) };
 	m_pPlayer->AddComponent<Sprite>("star.png");
 	scene.Add(std::move(m_pPlayer));
 
 	std::unique_ptr<Keyboard> keyboard = std::make_unique<Keyboard>();
 	const KeyboardInput k_S{ SDL_SCANCODE_S, InputState::Pressed };
-	keyboard->AddCommand(k_S, std::make_unique<SpeedUpCommand>());
+	keyboard->AddCommand(k_S, std::make_unique<SpeedUpCommand>(pPlayerMovementComponent));
 
 	auto& input = InputManager::GetInstance();
 	input.AddDevice(std::move(keyboard));
