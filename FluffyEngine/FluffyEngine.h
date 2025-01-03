@@ -4,6 +4,9 @@
 
 namespace Fluffy
 {
+	const int g_ScreenWidth{ 640 };
+	const int g_ScreenHeight{ 480 };
+
 	class FluffyEngine
 	{
 	public:

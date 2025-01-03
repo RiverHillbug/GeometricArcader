@@ -58,8 +58,8 @@ namespace Fluffy
 			"Math Game",
 			SDL_WINDOWPOS_CENTERED,
 			SDL_WINDOWPOS_CENTERED,
-			640,
-			480,
+			g_ScreenWidth,
+			g_ScreenHeight,
 			SDL_WINDOW_OPENGL
 		);
 

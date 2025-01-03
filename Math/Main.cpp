@@ -30,17 +30,21 @@
 #include "ServiceLocator.h"
 #include "SoundManager.h"
 #include "SpeedUpCommand.h"
+#include "PPGATransform.h"
 
 using namespace Fluffy;
 
 static void CreateScene()
 {
-	/*auto& scene = */SceneManager::GetInstance().CreateScene("MainScene");
+	auto& scene = SceneManager::GetInstance().CreateScene("MainScene");
+
+	std::unique_ptr<GameObject> m_pPlayer = std::make_unique<GameObject>();
+	m_pPlayer->AddComponent<PPGATransform>(ThreeBlade(100.0f, 100.0f, 0.0f));
+	m_pPlayer->AddComponent<Sprite>("star.png");
+	scene.Add(std::move(m_pPlayer));
 
 	std::unique_ptr<Keyboard> keyboard = std::make_unique<Keyboard>();
-
 	const KeyboardInput k_S{ SDL_SCANCODE_S, InputState::Pressed };
-
 	keyboard->AddCommand(k_S, std::make_unique<SpeedUpCommand>());
 
 	auto& input = InputManager::GetInstance();

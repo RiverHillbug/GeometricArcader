@@ -1,6 +1,8 @@
 #pragma once
 #include <SDL.h>
+#include <glm/glm.hpp>
 #include "Singleton.h"
+#include "FluffyEngine.h"
 
 class Texture2D;
 
@@ -23,6 +25,7 @@ namespace Fluffy
 		SDL_Renderer* GetSDLRenderer() const;
 
 		inline const SDL_Color& GetBackgroundColor() const { return m_ClearColor; }
+		inline static const glm::vec2 GetWindowSize() { return glm::vec2{ g_ScreenWidth, g_ScreenHeight }; }
 		inline void SetBackgroundColor(const SDL_Color& color) { m_ClearColor = color; }
 
 	private:
