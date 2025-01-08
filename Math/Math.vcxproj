@@ -76,16 +76,20 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>$(SolutionDir)FluffyEngine;$(SolutionDir)3rdParty/FlyFish;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)FluffyEngine;$(SolutionDir)3rdParty\FlyFish;$(IncludePath)</IncludePath>
+    <SourcePath>$(SolutionDir)3rdParty\FlyFish;$(SourcePath)</SourcePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <IncludePath>$(SolutionDir)FluffyEngine;$(SolutionDir)3rdParty/FlyFish;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)FluffyEngine;$(SolutionDir)3rdParty\FlyFish;$(IncludePath)</IncludePath>
+    <SourcePath>$(SolutionDir)3rdParty\FlyFish;$(SourcePath)</SourcePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>$(SolutionDir)FluffyEngine;$(SolutionDir)3rdParty/FlyFish;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)FluffyEngine;$(SolutionDir)3rdParty\FlyFish;$(IncludePath)</IncludePath>
+    <SourcePath>$(SourcePath)</SourcePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <IncludePath>$(SolutionDir)FluffyEngine;$(SolutionDir)3rdParty/FlyFish;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)FluffyEngine;$(SolutionDir)3rdParty\FlyFish;$(IncludePath)</IncludePath>
+    <SourcePath>$(SolutionDir)3rdParty\FlyFish;$(SourcePath)</SourcePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -180,29 +184,38 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\3rdParty\FlyFish\FlyFish.cpp" />
     <ClCompile Include="FPSCounter.cpp" />
     <ClCompile Include="GameEvents.cpp" />
+    <ClCompile Include="LevelBounds.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Pillar.cpp" />
     <ClCompile Include="PlayerCharacter.cpp" />
-    <ClCompile Include="PPGAMovement.cpp" />
+    <ClCompile Include="PPGAPillarMovement.cpp" />
+    <ClCompile Include="PPGAPlayerMovement.cpp" />
     <ClCompile Include="PPGATransform.cpp" />
     <ClCompile Include="ToggleSoundCommand.cpp" />
     <ClCompile Include="Rotator.cpp" />
     <ClCompile Include="SoundManager.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\3rdParty\FlyFish\FlyFish.h" />
     <ClInclude Include="CollisionLayers.h" />
     <ClInclude Include="EventParams.h" />
     <ClInclude Include="FPSCounter.h" />
     <ClInclude Include="GameEvents.h" />
+    <ClInclude Include="LevelBounds.h" />
+    <ClInclude Include="Pillar.h" />
+    <ClInclude Include="PillarsHolder.h" />
     <ClInclude Include="PlayerCharacter.h" />
-    <ClInclude Include="PPGAMovement.h" />
+    <ClInclude Include="PPGAPillarMovement.h" />
+    <ClInclude Include="PPGAPlayerMovement.h" />
     <ClInclude Include="PPGATransform.h" />
     <ClInclude Include="SpeedUpCommand.h" />
+    <ClInclude Include="TogglePlayerRotationCommand.h" />
     <ClInclude Include="ToggleSoundCommand.h" />
     <ClInclude Include="Rotator.h" />
     <ClInclude Include="SoundManager.h" />
-    <ClInclude Include="Structs.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -1,13 +1,13 @@
 #pragma once
 #include "FluffyEngine.h"
 #include "Command.h"
-#include "PPGAMovement.h"
+#include "PPGAPlayerMovement.h"
 
 
 class SpeedUpCommand final : public Fluffy::Command
 {
 public:
-	SpeedUpCommand(PPGAMovement* pOwnerMovement)
+	SpeedUpCommand(PPGAPlayerMovement* pOwnerMovement)
 		: m_pOwnerMovement{ pOwnerMovement }
 	{
 	}
@@ -24,5 +24,5 @@ public:
 	}
 
 private:
-	PPGAMovement* m_pOwnerMovement;
+	PPGAPlayerMovement* m_pOwnerMovement;
 };
