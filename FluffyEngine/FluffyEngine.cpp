@@ -55,7 +55,7 @@ namespace Fluffy
 		}
 
 		g_Window = SDL_CreateWindow(
-			"Math Game",
+			"Geometric Arcader",
 			SDL_WINDOWPOS_CENTERED,
 			SDL_WINDOWPOS_CENTERED,
 			g_ScreenWidth,

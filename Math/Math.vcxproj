@@ -185,7 +185,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\3rdParty\FlyFish\FlyFish.cpp" />
-    <ClCompile Include="FPSCounter.cpp" />
     <ClCompile Include="GameEvents.cpp" />
     <ClCompile Include="LevelBounds.cpp" />
     <ClCompile Include="Main.cpp" />
@@ -195,14 +194,11 @@
     <ClCompile Include="PPGAPlayerMovement.cpp" />
     <ClCompile Include="PPGATransform.cpp" />
     <ClCompile Include="ToggleSoundCommand.cpp" />
-    <ClCompile Include="Rotator.cpp" />
     <ClCompile Include="SoundManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\3rdParty\FlyFish\FlyFish.h" />
-    <ClInclude Include="CollisionLayers.h" />
     <ClInclude Include="EventParams.h" />
-    <ClInclude Include="FPSCounter.h" />
     <ClInclude Include="GameEvents.h" />
     <ClInclude Include="LevelBounds.h" />
     <ClInclude Include="Pillar.h" />
@@ -214,7 +210,6 @@
     <ClInclude Include="SpeedUpCommand.h" />
     <ClInclude Include="TogglePlayerRotationCommand.h" />
     <ClInclude Include="ToggleSoundCommand.h" />
-    <ClInclude Include="Rotator.h" />
     <ClInclude Include="SoundManager.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
