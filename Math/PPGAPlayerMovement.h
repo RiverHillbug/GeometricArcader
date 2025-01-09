@@ -26,6 +26,8 @@ private:
 	ThreeBlade m_CurrentVelocity;
 	ThreeBlade m_RotationCenter;
 
+	float m_RotationFrequency{ 0.1f };
+
 	Motor m_Velocity;
 	Motor m_Rotation;
 

@@ -51,10 +51,10 @@ void PPGATransform::UpdateGameObjectTransform()
 
 void PPGATransform::UpdatePlayerSpriteColor()
 {
-	ThreeBlade color;
+	/*ThreeBlade color;
 
 	color[0] = std::lerp(m_PlayerMaxEnergyColor[0], m_PlayerMinEnergyColor[0], ((m_PlayerMaxEnergy[2] - m_Position[2]) / m_PlayerMaxEnergy[2]));
 	color[1] = std::lerp(m_PlayerMinEnergyColor[0], m_PlayerMaxEnergyColor[0], ((m_PlayerMaxEnergy[2] - m_Position[2]) / m_PlayerMaxEnergy[2]));
 
-	m_pOwnerSprite->SetColor(glm::vec3(color[0], color[1], color[2]));
+	m_pOwnerSprite->SetColor(glm::vec3(color[0], color[1], color[2]));*/
 }

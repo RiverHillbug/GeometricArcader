@@ -22,31 +22,31 @@ PPGAPlayerMovement::PPGAPlayerMovement(Fluffy::GameObject* pOwner, PPGATransform
 
 void PPGAPlayerMovement::Update(const float deltaTime)
 {
-	/*if (m_IsRotatingAroundPillar)
-		m_pOwnerTransform->Translate(m_CurrentVelocity * deltaTime);
+	if (m_IsRotatingAroundPillar)
+	{
+		// Off-origin rotation: Translation * Rotation * ~Translation
+
+		Motor rotation{ Motor::Rotation(m_RotationFrequency * 360 * deltaTime, TwoBlade(0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f)) };
+		Motor translation{ Motor::Translation(-m_RotationCenter.VNorm(), !TwoBlade(m_RotationCenter & ThreeBlade(0.0f, 0.0f, 0.0f))) };
+		Motor combined{ translation * rotation * ~translation };
+		auto newTransform{ combined * m_pOwnerTransform->GetPosition() * ~combined };
+		m_pOwnerTransform->SetPosition(newTransform.Grade3());
+	}
 	else
 	{
-		ThreeBlade translation{ 0.0f, 0.0f, m_CurrentVelocity[2] * deltaTime };
-		m_pOwnerTransform->Translate(m_CurrentVelocity * deltaTime);
+		Motor movementThisFrame{ m_Velocity * deltaTime };
+		movementThisFrame[0] = 1.0f;	// norm is still 1
+		const ThreeBlade newTransform{ (movementThisFrame * m_pOwnerTransform->GetPosition() * ~movementThisFrame).Grade3() };	// make sandwich
+		m_pOwnerTransform->SetPosition(newTransform);
 	}
 
-	if (m_pOwnerTransform->GetPosition()[2] <= 0.0f)
-		m_CurrentVelocity = m_DefaultVelocity;*/
-
-	Motor movementThisFrame{ m_Velocity * deltaTime };
-	movementThisFrame[0] = 1.0f;	// norm is still 1
-
-	const ThreeBlade newTransform{ (movementThisFrame * m_pOwnerTransform->GetPosition() * ~movementThisFrame).Grade3() };	// make sandwich
-	m_pOwnerTransform->SetPosition(newTransform);
-
-	std::cout << "Position: " << newTransform[0] << ", " << newTransform[1] << ", " << newTransform[2] << std::endl;
-
+	// Haven't decided yet about how the collisions should be if player is rotating around an object
 	OneBlade collision;
-	 if (m_LevelBounds.DidCollide(newTransform, m_OwnerSpriteSize.x, m_OwnerSpriteSize.y, collision))
+	 if (m_LevelBounds.DidCollide(m_pOwnerTransform->GetPosition(), m_OwnerSpriteSize.x, m_OwnerSpriteSize.y, collision))
 	 {
 		 auto temp { collision * m_Velocity * ~collision };
 
-		 //"s", "e01", "e02", "e03", "e23", "e31", "e12", "e0123" ---> Motor
+		 // "s", "e01", "e02", "e03", "e23", "e31", "e12", "e0123" ---> Motor
 		 Motor newVelocity{ temp[0], temp[5], temp[6] ,temp[7], temp[8], temp[9], temp[10], temp[15] };
 		 m_Velocity = newVelocity;
 	 }

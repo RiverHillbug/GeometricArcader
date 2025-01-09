@@ -46,21 +46,37 @@ static void CreateScene()
 
 	LevelBounds pLevelBounds{ top, bottom, left, right };
 
-	std::unique_ptr<GameObject> m_pPlayer = std::make_unique<GameObject>();
-	m_pPlayer->AddComponent<Sprite>("star.png");
-	PPGATransform* const pPlayerTransform{ m_pPlayer->AddComponent<PPGATransform>(ThreeBlade(100.0f, 100.0f, 100.0f), true) };
+	std::unique_ptr<GameObject> pBackground = std::make_unique<GameObject>();
+	pBackground->AddComponent<Sprite>("space.png", windowSize / 2.0f);
+	scene.Add(std::move(pBackground));
+
+	std::unique_ptr<GameObject> pPlayer = std::make_unique<GameObject>();
+	pPlayer->AddComponent<Sprite>("player.png");
+	PPGATransform* const pPlayerTransform{ pPlayer->AddComponent<PPGATransform>(ThreeBlade(100.0f, 100.0f, 100.0f), true) };
 	const ThreeBlade defaultVelocity{ ThreeBlade(50.0f, 0.0f, 10.0f) };
 	const ThreeBlade maxVelocity{ ThreeBlade(100.0f, 0.0f, -50.0f) };
 	const float speed{ 100.0f };
 	const Motor velocity{ Motor::Translation(speed, TwoBlade(1.0f, 1.0f, 1.0f, 0.0f, 0.0f, 0.0f)) };
-	PPGAPlayerMovement* const pPlayerMovementComponent { m_pPlayer->AddComponent<PPGAPlayerMovement>(pPlayerTransform, defaultVelocity, maxVelocity, velocity, pLevelBounds) };
-	scene.Add(std::move(m_pPlayer));
+	PPGAPlayerMovement* const pPlayerMovementComponent { pPlayer->AddComponent<PPGAPlayerMovement>(pPlayerTransform, defaultVelocity, maxVelocity, velocity, pLevelBounds) };
+	scene.Add(std::move(pPlayer));
 
-	std::unique_ptr<GameObject> m_pPillar1 = std::make_unique<GameObject>();
-	m_pPillar1->AddComponent<Pillar>("PillarDefault.png", "PillarHighlighted.png");
-	PPGATransform* const pPillar1Transform{ m_pPillar1->AddComponent<PPGATransform>(ThreeBlade(280.0f, 200.0f, 50.0f), false) };
+	std::unique_ptr<GameObject> pPillar1 = std::make_unique<GameObject>();
+	pPillar1->AddComponent<Pillar>("planet1.png", "planetHighlight.png");
+	PPGATransform* const pPillar1Transform{ pPillar1->AddComponent<PPGATransform>(ThreeBlade(280.0f, 150.0f, 50.0f), false) };
 	PillarsHolder::GetInstance().Add(pPillar1Transform);
-	scene.Add(std::move(m_pPillar1));
+	scene.Add(std::move(pPillar1));
+
+	std::unique_ptr<GameObject> pPillar2 = std::make_unique<GameObject>();
+	pPillar2->AddComponent<Pillar>("planet2.png", "planetHighlight.png");
+	PPGATransform* const pPillar2Transform{ pPillar2->AddComponent<PPGATransform>(ThreeBlade(430.0f, 300.0f, 0.0f), false) };
+	PillarsHolder::GetInstance().Add(pPillar2Transform);
+	scene.Add(std::move(pPillar2));
+
+	std::unique_ptr<GameObject> pPillar3 = std::make_unique<GameObject>();
+	pPillar3->AddComponent<Pillar>("planet3.png", "planetHighlight.png");
+	PPGATransform* const pPillar3Transform{ pPillar3->AddComponent<PPGATransform>(ThreeBlade(100.0f, 350.0f, 0.0f), false) };
+	PillarsHolder::GetInstance().Add(pPillar3Transform);
+	scene.Add(std::move(pPillar3));
 
 	//------- Inputs -------//
 	std::unique_ptr<Keyboard> keyboard = std::make_unique<Keyboard>();
