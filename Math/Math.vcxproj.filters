@@ -48,6 +48,12 @@
     <ClCompile Include="..\3rdParty\FlyFish\FlyFish.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="MovePillarCommand.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CyclePillarsCommand.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="EventParams.h">
@@ -62,7 +68,7 @@
     <ClInclude Include="ToggleSoundCommand.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="SpeedUpCommand.h">
+    <ClInclude Include="ToggleSpeedUpCommand.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="PlayerCharacter.h">
@@ -90,6 +96,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\3rdParty\FlyFish\FlyFish.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MovePillarCommand.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CyclePillarsCommand.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

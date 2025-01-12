@@ -13,8 +13,8 @@ Pillar::Pillar(Fluffy::GameObject* pOwner, std::string defaultSpritePath, std::s
 	m_pOwnerSpriteHighlight->SetEnabled(m_IsHighlighted);
 }
 
-void Pillar::ToggleHighlight()
+void Pillar::SetHighlightActive(bool active)
 {
-	m_IsHighlighted = !m_IsHighlighted;
-	m_pOwnerSpriteHighlight->SetEnabled(m_IsHighlighted);
+	m_IsHighlighted = active;
+	m_pOwnerSpriteHighlight->SetEnabled(active);
 }

@@ -232,6 +232,7 @@ xcopy "$(SolutionDir)3rdParty\SDL2_mixer\lib\$(PlatformTarget)\*.dll" "$(OutputP
     <ClInclude Include="Event.h" />
     <ClInclude Include="Font.h" />
     <ClInclude Include="GameObject.h" />
+    <ClInclude Include="Mouse.h" />
     <ClInclude Include="RectColliderComponent.h" />
     <ClInclude Include="Rectf.h" />
     <ClInclude Include="IEventParam.h" />
@@ -268,6 +269,7 @@ xcopy "$(SolutionDir)3rdParty\SDL2_mixer\lib\$(PlatformTarget)\*.dll" "$(OutputP
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="Keyboard.cpp" />
     <ClCompile Include="FluffyEngine.cpp" />
+    <ClCompile Include="Mouse.cpp" />
     <ClCompile Include="RectColliderComponent.cpp" />
     <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="ResourceManager.cpp" />

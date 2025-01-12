@@ -21,7 +21,7 @@ public:
 	Pillar(Pillar&& other) = default;
 	Pillar& operator=(Pillar&& other) = default;
 
-	void ToggleHighlight();
+	void SetHighlightActive(bool active);
 
 private:
 	bool m_IsHighlighted{ false };

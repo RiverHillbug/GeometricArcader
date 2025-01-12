@@ -185,9 +185,11 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\3rdParty\FlyFish\FlyFish.cpp" />
+    <ClCompile Include="CyclePillarsCommand.cpp" />
     <ClCompile Include="GameEvents.cpp" />
     <ClCompile Include="LevelBounds.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="MovePillarCommand.cpp" />
     <ClCompile Include="Pillar.cpp" />
     <ClCompile Include="PlayerCharacter.cpp" />
     <ClCompile Include="PPGAPillarMovement.cpp" />
@@ -198,16 +200,18 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\3rdParty\FlyFish\FlyFish.h" />
+    <ClInclude Include="CyclePillarsCommand.h" />
     <ClInclude Include="EventParams.h" />
     <ClInclude Include="GameEvents.h" />
     <ClInclude Include="LevelBounds.h" />
+    <ClInclude Include="MovePillarCommand.h" />
     <ClInclude Include="Pillar.h" />
     <ClInclude Include="PillarsHolder.h" />
     <ClInclude Include="PlayerCharacter.h" />
     <ClInclude Include="PPGAPillarMovement.h" />
     <ClInclude Include="PPGAPlayerMovement.h" />
     <ClInclude Include="PPGATransform.h" />
-    <ClInclude Include="SpeedUpCommand.h" />
+    <ClInclude Include="ToggleSpeedUpCommand.h" />
     <ClInclude Include="TogglePlayerRotationCommand.h" />
     <ClInclude Include="ToggleSoundCommand.h" />
     <ClInclude Include="SoundManager.h" />

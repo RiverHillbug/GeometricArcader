@@ -2,6 +2,7 @@
 #include "FluffyEngine.h"
 #include "Command.h"
 #include "PPGAPlayerMovement.h"
+#include "PillarsHolder.h"
 
 class TogglePlayerRotationCommand final : public Fluffy::Command
 {
@@ -20,6 +21,7 @@ public:
 	void Execute()
 	{
 		m_pOwnerMovement->ToggleRotation();
+		PillarsHolder::GetInstance().TogglePillarSelection();
 	}
 
 private:

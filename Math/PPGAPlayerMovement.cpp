@@ -8,22 +8,27 @@
 #include <Sprite.h>
 #include <iostream>
 
-PPGAPlayerMovement::PPGAPlayerMovement(Fluffy::GameObject* pOwner, PPGATransform* pOwnerTransform, const ThreeBlade& defaultVelocity, const ThreeBlade& maxVelocity, const Motor& velocity, LevelBounds levelBounds)
+PPGAPlayerMovement::PPGAPlayerMovement(Fluffy::GameObject* pOwner, PPGATransform* pOwnerTransform, float defaultSpeed, float fastSpeed, TwoBlade defaultDirection, TwoBlade fastMoveDirection, LevelBounds levelBounds)
 	: Fluffy::Component(pOwner)
 	, m_pOwnerTransform{ pOwnerTransform }
-	, m_DefaultVelocity{ defaultVelocity }
-	, m_MaxVelocity{ maxVelocity }
-	, m_CurrentVelocity{ defaultVelocity }
-	, m_Velocity{ velocity }
+	, m_DefaultSpeed{ defaultSpeed }
+	, m_FastSpeed{ fastSpeed }
+	, m_DefaultDirection{ defaultDirection }
+	, m_FastMoveDirection{ fastMoveDirection }
 	, m_LevelBounds{ levelBounds }
 {
 	m_OwnerSpriteSize = m_pOwner->GetComponent<Fluffy::Sprite>()->GetTextureSize();
+	m_CurrentVelocity = Motor::Translation(defaultSpeed, defaultDirection);
+	m_CurrentSpeed = defaultSpeed;
+	m_CurrentDirection = defaultDirection;
 }
 
 void PPGAPlayerMovement::Update(const float deltaTime)
 {
 	if (m_IsRotatingAroundPillar)
 	{
+		m_RotationCenter = PillarsHolder::GetInstance().GetSelectedPillar()->GetPosition();
+
 		// Off-origin rotation: Translation * Rotation * ~Translation
 
 		Motor rotation{ Motor::Rotation(m_RotationFrequency * 360 * deltaTime, TwoBlade(0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f)) };
@@ -34,62 +39,44 @@ void PPGAPlayerMovement::Update(const float deltaTime)
 	}
 	else
 	{
-		Motor movementThisFrame{ m_Velocity * deltaTime };
+		m_CurrentVelocity = Motor::Translation(m_CurrentSpeed, m_CurrentDirection);
+		Motor movementThisFrame{ m_CurrentVelocity * deltaTime };
 		movementThisFrame[0] = 1.0f;	// norm is still 1
-		const ThreeBlade newTransform{ (movementThisFrame * m_pOwnerTransform->GetPosition() * ~movementThisFrame).Grade3() };	// make sandwich
+		ThreeBlade newTransform{ (movementThisFrame * m_pOwnerTransform->GetPosition() * ~movementThisFrame).Grade3() };	// make sandwich
+
+		if (newTransform[2] <= 0.0f)
+		{
+			ToggleSpeedUp();
+			newTransform[2] = 0.0f;
+		}
+
 		m_pOwnerTransform->SetPosition(newTransform);
 	}
 
-	// Haven't decided yet about how the collisions should be if player is rotating around an object
+	// Haven't decided yet about how the collisions should be handled if player is rotating around an object
 	OneBlade collision;
-	 if (m_LevelBounds.DidCollide(m_pOwnerTransform->GetPosition(), m_OwnerSpriteSize.x, m_OwnerSpriteSize.y, collision))
-	 {
-		 auto temp { collision * m_Velocity * ~collision };
-
-		 // "s", "e01", "e02", "e03", "e23", "e31", "e12", "e0123" ---> Motor
-		 Motor newVelocity{ temp[0], temp[5], temp[6] ,temp[7], temp[8], temp[9], temp[10], temp[15] };
-		 m_Velocity = newVelocity;
-	 }
+	if (m_LevelBounds.DidCollide(m_pOwnerTransform->GetPosition(), m_OwnerSpriteSize.x, m_OwnerSpriteSize.y, collision))
+	{
+		const auto newDirection{ collision * m_CurrentDirection * ~collision };
+		m_CurrentDirection = newDirection.Grade2();
+	}
 }
 
-void PPGAPlayerMovement::SpeedUp()
+void PPGAPlayerMovement::ToggleSpeedUp()
 {
-	if (m_pOwnerTransform->GetPosition()[2] >= 0.0f)
-		m_CurrentVelocity = m_MaxVelocity;
+	if (m_pOwnerTransform->GetPosition()[2] > 0.0f && m_CurrentSpeed == m_DefaultSpeed)
+	{
+		m_CurrentSpeed = m_FastSpeed;
+		m_CurrentDirection[2] = -1.0f;
+	}
+	else
+	{
+		m_CurrentSpeed = m_DefaultSpeed;
+		m_CurrentDirection[2] = 1.0f;
+	}
 }
 
 void PPGAPlayerMovement::ToggleRotation()
 {
 	m_IsRotatingAroundPillar = !m_IsRotatingAroundPillar;
-	FindClosestPillar();
-}
-
-void PPGAPlayerMovement::FindClosestPillar()
-{
-	const std::vector<PPGATransform*>& pillars{ PillarsHolder::GetInstance().GetAllPillarsInScene() };
-
-	ThreeBlade distanceToClosestPillar{ FLT_MAX, FLT_MAX, 0.0f };
-	PPGATransform* pSelectedPillar{ nullptr };
-
-	for (int i{ 0 }; i < pillars.size(); ++i)
-	{
-		ThreeBlade pillarPosition2D{ pillars[i]->GetPosition()[0], pillars[i]->GetPosition()[1], 0.0f };
-		ThreeBlade playerPosition2D{ pillars[i]->GetPosition()[0], pillars[i]->GetPosition()[1], 0.0f };
-
-		ThreeBlade playerToPillarDistance2D{ pillarPosition2D - playerPosition2D };
-
-		if (playerToPillarDistance2D.VNorm() < distanceToClosestPillar.VNorm())
-		{
-			distanceToClosestPillar = playerToPillarDistance2D;
-			pSelectedPillar = pillars[i];
-		}
-	}
-	
-	if (pSelectedPillar != nullptr)
-	{
-		Pillar* pPillar{ pSelectedPillar->GetGameObject()->GetComponent<Pillar>() };
-		pPillar->ToggleHighlight();
-
-		m_RotationCenter = pSelectedPillar->GetPosition();
-	}
 }

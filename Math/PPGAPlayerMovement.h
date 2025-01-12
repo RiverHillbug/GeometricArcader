@@ -12,29 +12,33 @@ namespace Fluffy
 class PPGAPlayerMovement final : public Fluffy::Component
 {
 public:
-	PPGAPlayerMovement(Fluffy::GameObject* pOwner, class PPGATransform* pOwnerTransform, const ThreeBlade& defaultVelocity, const ThreeBlade& maxVelocity, const Motor& velocity, LevelBounds levelBounds);
+	PPGAPlayerMovement(Fluffy::GameObject* pOwner, class PPGATransform* pOwnerTransform, float defaultSpeed, float fastSpeed, TwoBlade defaultDirection, TwoBlade fastDirection, LevelBounds levelBounds);
 	~PPGAPlayerMovement() = default;
 	void Update(const float deltaTime);
-	void SpeedUp();
+	void ToggleSpeedUp();
 	void ToggleRotation();
 
 private:
 	bool m_IsRotatingAroundPillar{ false };
 
-	ThreeBlade m_DefaultVelocity;
-	ThreeBlade m_MaxVelocity;
-	ThreeBlade m_CurrentVelocity;
-	ThreeBlade m_RotationCenter;
+	float m_DefaultSpeed;
+	float m_FastSpeed;
+	float m_CurrentSpeed;
 
-	float m_RotationFrequency{ 0.1f };
+	TwoBlade m_DefaultDirection;
+	TwoBlade m_FastMoveDirection;
+	TwoBlade m_CurrentDirection;
 
-	Motor m_Velocity;
+	//Motor m_DefaultVelocity;
+	//Motor m_MaxVelocity;
+	Motor m_CurrentVelocity;
+
 	Motor m_Rotation;
+	ThreeBlade m_RotationCenter;
+	float m_RotationFrequency{ 0.1f };
 
 	class PPGATransform* m_pOwnerTransform;
 	LevelBounds m_LevelBounds;
 
 	glm::vec2 m_OwnerSpriteSize;
-
-	void FindClosestPillar();
 };
