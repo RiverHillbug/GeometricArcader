@@ -71,13 +71,13 @@ static void CreateScene()
 	scene.Add(std::move(pPillar1));
 
 	std::unique_ptr<GameObject> pPillar2 = std::make_unique<GameObject>();
-	Pillar* const pPillar2Pillar{ pPillar2->AddComponent<Pillar>("planet2.png", "planetHighlight.png") };
+	Pillar* const pPillar2Pillar{ pPillar2->AddComponent<Pillar>("planet2.png", "planetHighlight2.png") };
 	pPillar2->AddComponent<PPGATransform>(ThreeBlade(430.0f, 300.0f, 0.0f), false);
 	PillarsHolder::GetInstance().Add(pPillar2Pillar);
 	scene.Add(std::move(pPillar2));
 
 	std::unique_ptr<GameObject> pPillar3 = std::make_unique<GameObject>();
-	Pillar* const pPillar3Pillar{ pPillar3->AddComponent<Pillar>("planet3.png", "planetHighlight.png") };
+	Pillar* const pPillar3Pillar{ pPillar3->AddComponent<Pillar>("planet3.png", "planetHighlight3.png") };
 	pPillar3->AddComponent<PPGATransform>(ThreeBlade(100.0f, 350.0f, 0.0f), false);
 	PillarsHolder::GetInstance().Add(pPillar3Pillar);
 	scene.Add(std::move(pPillar3));
