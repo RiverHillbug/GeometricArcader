@@ -1,23 +1,33 @@
 #include "PPGAPlayerMovement.h"
 #include "PPGATransform.h"
-#include <GameObject.h>
-#include "PillarsHolder.h"
-#include <algorithm>
 #include "Pillar.h"
-#include <FlyFish.h>
+#include "PillarsHolder.h"
+#include <GameObject.h>
 #include <Sprite.h>
+#include <algorithm>
+#include <FlyFish.h>
 #include <iostream>
 
 PPGAPlayerMovement::PPGAPlayerMovement(Fluffy::GameObject* pOwner, PPGATransform* pOwnerTransform, float defaultSpeed, float fastSpeed, TwoBlade defaultDirection, TwoBlade fastMoveDirection, LevelBounds levelBounds)
 	: Fluffy::Component(pOwner)
 	, m_pOwnerTransform{ pOwnerTransform }
+	, m_PreviousPosition{ pOwnerTransform->GetPosition() }
 	, m_DefaultSpeed{ defaultSpeed }
 	, m_FastSpeed{ fastSpeed }
 	, m_DefaultDirection{ defaultDirection }
 	, m_FastMoveDirection{ fastMoveDirection }
 	, m_LevelBounds{ levelBounds }
 {
-	m_OwnerSpriteSize = m_pOwner->GetComponent<Fluffy::Sprite>()->GetTextureSize();
+	const auto& sprites{ m_pOwner->GetComponents<Fluffy::Sprite>() };
+	if (sprites.size() > 0)
+	{
+		m_pOwnerSprite1 = sprites[0];
+		m_OwnerSpriteSize = m_pOwnerSprite1->GetTextureSize();
+
+		if (sprites.size() > 1)
+			m_pOwnerSprite2 = sprites[1];
+	}
+
 	m_CurrentVelocity = Motor::Translation(defaultSpeed, defaultDirection);
 	m_CurrentSpeed = defaultSpeed;
 	m_CurrentDirection = defaultDirection;
@@ -25,16 +35,18 @@ PPGAPlayerMovement::PPGAPlayerMovement(Fluffy::GameObject* pOwner, PPGATransform
 
 void PPGAPlayerMovement::Update(const float deltaTime)
 {
+	m_PreviousPosition = m_pOwnerTransform->GetPosition();
+
 	if (m_IsRotatingAroundPillar)
 	{
 		m_RotationCenter = PillarsHolder::GetInstance().GetSelectedPillar()->GetPosition();
 
 		// Off-origin rotation: Translation * Rotation * ~Translation
+		const Motor& rotation{ Motor::Rotation(m_RotationFrequency * 360.0f * deltaTime, TwoBlade(0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f)) };
+		const Motor& translation{ Motor::Translation(-m_RotationCenter.VNorm(), !TwoBlade(m_RotationCenter & ThreeBlade(0.0f, 0.0f, 0.0f))) };
+		const Motor& combined{ translation * rotation * ~translation };
+		const MultiVector& newTransform{ combined * m_pOwnerTransform->GetPosition() * ~combined };
 
-		Motor rotation{ Motor::Rotation(m_RotationFrequency * 360 * deltaTime, TwoBlade(0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f)) };
-		Motor translation{ Motor::Translation(-m_RotationCenter.VNorm(), !TwoBlade(m_RotationCenter & ThreeBlade(0.0f, 0.0f, 0.0f))) };
-		Motor combined{ translation * rotation * ~translation };
-		auto newTransform{ combined * m_pOwnerTransform->GetPosition() * ~combined };
 		m_pOwnerTransform->SetPosition(newTransform.Grade3());
 	}
 	else
@@ -60,6 +72,8 @@ void PPGAPlayerMovement::Update(const float deltaTime)
 		const auto newDirection{ collision * m_CurrentDirection * ~collision };
 		m_CurrentDirection = newDirection.Grade2();
 	}
+
+	CalculateRotationAngle();
 }
 
 void PPGAPlayerMovement::ToggleSpeedUp()
@@ -79,4 +93,16 @@ void PPGAPlayerMovement::ToggleSpeedUp()
 void PPGAPlayerMovement::ToggleRotation()
 {
 	m_IsRotatingAroundPillar = !m_IsRotatingAroundPillar;
+}
+
+void PPGAPlayerMovement::CalculateRotationAngle()
+{
+	const ThreeBlade& currentPosition{ m_pOwnerTransform->GetPosition() };
+	const TwoBlade& movementSinceLastFrame{ TwoBlade::LineFromPoints(m_PreviousPosition[0], m_PreviousPosition[1], 1.0f,
+																	 currentPosition[0], currentPosition[1], 1.0f) };
+
+	const float angle{ std::atan2(movementSinceLastFrame[1], -movementSinceLastFrame[0]) * (180.0f / 3.1415f) };
+
+	m_pOwnerSprite1->RotateSprite(angle);
+	m_pOwnerSprite2->RotateSprite(angle);
 }

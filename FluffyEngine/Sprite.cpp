@@ -36,6 +36,11 @@ namespace Fluffy
 		};
 	}
 
+	void Sprite::SetRotation(const float angleDegrees)
+	{
+		m_Rotation = angleDegrees;
+	}
+
 	void Sprite::Update(const float deltaTime)
 	{
 		if (m_Animation.HasFrames())
@@ -49,7 +54,7 @@ namespace Fluffy
 
 		const glm::vec2 size{ m_Animation.GetSourceRect().width, m_Animation.GetSourceRect().height };
 		const auto& pos = m_pOwner->GetWorldPosition() - (size * 0.5f) + m_Offset;
-		Renderer::GetInstance().RenderTexture(*m_pTexture, m_Animation.GetSourceRect(), pos.x, pos.y);
+		Renderer::GetInstance().RenderTexture(*m_pTexture, m_Animation.GetSourceRect(), pos.x, pos.y, m_Rotation);
 	}
 
 	void Sprite::SetTexture(const std::string& fileName)

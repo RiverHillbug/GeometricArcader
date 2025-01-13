@@ -18,6 +18,7 @@ namespace Fluffy
 		void SetColor(const glm::vec3& color);
 		inline glm::vec2 GetTextureSize() const { return m_pTexture->GetSize(); }
 		Rectf GetRect() const;
+		void SetRotation(const float angleDegrees);
 
 		Sprite(class GameObject* pOwner, const std::string& fileName, const int textureColumns = 1, const int textureRows = 1, const float framesPerSecond = 0.0f);
 		Sprite(class GameObject* pOwner, const std::string& fileName, const glm::vec2& offset, const int textureColumns = 1, const int textureRows = 1, const float framesPerSecond = 0.0f);
@@ -31,5 +32,6 @@ namespace Fluffy
 		Animation m_Animation{};
 		std::shared_ptr<class Texture2D> m_pTexture{};
 		glm::vec2 m_Offset{ 0.0f, 0.0f };
+		float m_Rotation{ 0.0f };
 	};
 }

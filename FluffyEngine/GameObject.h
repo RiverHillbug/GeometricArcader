@@ -80,15 +80,13 @@ namespace Fluffy
 		}
 
 		template<typename ComponentType>
-		const std::vector<Component*>& GetComponents()
+		std::vector<ComponentType*> GetComponents()
 		{
 			const std::string name{ typeid(ComponentType).name() };
 			std::vector<ComponentType*> components{};
 
 			for (const auto& component : m_Components[name])
-			{
-				components.push_back(component.get());
-			}
+				components.push_back(reinterpret_cast<ComponentType*>(component.get()));
 
 			return components;
 		}

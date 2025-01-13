@@ -53,8 +53,8 @@ static void CreateScene()
 	scene.Add(std::move(pBackground));
 
 	std::unique_ptr<GameObject> pPlayer = std::make_unique<GameObject>();
-	pPlayer->AddComponent<Sprite>("playerHighlight.png");
-	pPlayer->AddComponent<Sprite>("player.png");
+	pPlayer->AddComponent<Sprite>("playerHighlight1.png");
+	pPlayer->AddComponent<Sprite>("player1.png");
 	PPGATransform* const pPlayerTransform{ pPlayer->AddComponent<PPGATransform>(ThreeBlade(100.0f, 100.0f, 100.0f), true) };
 	const float defaultSpeed{ 100.0f };
 	const float maxSpeed{ 250.0f };

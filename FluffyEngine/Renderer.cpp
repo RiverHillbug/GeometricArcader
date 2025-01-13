@@ -50,26 +50,26 @@ namespace Fluffy
 		}
 	}
 
-	void Renderer::RenderTexture(const Texture2D& texture, const float x, const float y) const
+	void Renderer::RenderTexture(const Texture2D& texture, const float x, const float y, const float rotationAngle /*= 0.0f*/) const
 	{
 		SDL_Rect dst{};
 		dst.x = static_cast<int>(x);
 		dst.y = static_cast<int>(y);
 		SDL_QueryTexture(texture.GetSDLTexture(), nullptr, nullptr, &dst.w, &dst.h);
-		SDL_RenderCopy(GetSDLRenderer(), texture.GetSDLTexture(), nullptr, &dst);
+		SDL_RenderCopyEx(GetSDLRenderer(), texture.GetSDLTexture(), nullptr, &dst, rotationAngle, nullptr, SDL_FLIP_NONE);
 	}
 
-	void Renderer::RenderTexture(const Texture2D& texture, const float x, const float y, const float width, const float height) const
+	void Renderer::RenderTexture(const Texture2D& texture, const float x, const float y, const float width, const float height, const float rotationAngle /*= 0.0f*/) const
 	{
 		SDL_Rect dst{};
 		dst.x = static_cast<int>(x);
 		dst.y = static_cast<int>(y);
 		dst.w = static_cast<int>(width);
 		dst.h = static_cast<int>(height);
-		SDL_RenderCopy(GetSDLRenderer(), texture.GetSDLTexture(), nullptr, &dst);
+		SDL_RenderCopyEx(GetSDLRenderer(), texture.GetSDLTexture(), nullptr, &dst, rotationAngle, nullptr, SDL_FLIP_NONE);
 	}
 
-	void Renderer::RenderTexture(const Texture2D& texture, const Rectf& source, const float x, const float y) const
+	void Renderer::RenderTexture(const Texture2D& texture, const Rectf& source, const float x, const float y, const float rotationAngle /*= 0.0f*/) const
 	{
 		const SDL_Rect src
 		{
@@ -85,7 +85,7 @@ namespace Fluffy
 		dst.w = static_cast<int>(source.width);
 		dst.h = static_cast<int>(source.height);
 
-		SDL_RenderCopy(GetSDLRenderer(), texture.GetSDLTexture(), &src, &dst);
+		SDL_RenderCopyEx(GetSDLRenderer(), texture.GetSDLTexture(), &src, &dst, rotationAngle, nullptr, SDL_FLIP_NONE);
 	}
 
 	SDL_Renderer* Renderer::GetSDLRenderer() const { return m_pRenderer; }
