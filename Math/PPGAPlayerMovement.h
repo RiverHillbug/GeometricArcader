@@ -41,6 +41,8 @@ private:
 	ThreeBlade m_PreviousPosition{};
 	LevelBounds m_LevelBounds;
 
+	OneBlade m_PreviousCollision{};
+
 	Fluffy::Sprite* m_pOwnerSprite1{ nullptr };
 	Fluffy::Sprite* m_pOwnerSprite2{ nullptr };
 	glm::vec2 m_OwnerSpriteSize{};
