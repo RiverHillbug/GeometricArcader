@@ -103,6 +103,6 @@ void PPGAPlayerMovement::CalculateRotationAngle()
 
 	const float angle{ std::atan2(movementSinceLastFrame[1], -movementSinceLastFrame[0]) * (180.0f / 3.1415f) };
 
-	m_pOwnerSprite1->RotateSprite(angle);
-	m_pOwnerSprite2->RotateSprite(angle);
+	m_pOwnerSprite1->SetRotation(angle);
+	m_pOwnerSprite2->SetRotation(angle);
 }
