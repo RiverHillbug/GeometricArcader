@@ -1,3 +1,33 @@
 # Geometric Arcader
  
-![image](https://github.com/user-attachments/assets/31f45617-212d-4044-a732-2e67d0a00715)
+### What is a Geometric Arcader?
+Geometric Arcader is a 2D arcade game but implemented in the acquired 3D PPGA
+throughout GEOA which allows us to then use the 'redundant 3rd dimension' as
+the energy-container. You are a small rectangle/triangle constantly moving in a
+box which collides with the screen window. You continuously gain an amount of
+energy but depending on your movement speed you lose energy. The movement
+can only change directions by colliding with an object or rotation around a pillar.
+Pressing buttons changes the overall movement speed or initiates the
+rotation. What is extra in this game is up to the student.
+
+### How did I use Geometric Algebra in my game?
+I used geometric algebra formulas to
+1. Move the player character at two different possible speeds in the scene
+3. Make the player character able to rotate around objects
+4. Determine if any collisions happen with the window borders
+
+And here is an overview of the calculations
+1. Player movement
+
+![image](https://github.com/user-attachments/assets/6caa4fde-f73a-4cda-8d41-c6412ef74d3c)
+
+2. Player rotation
+ 
+![image](https://github.com/user-attachments/assets/722e528c-8619-4ccf-985b-519bda8ce3d1)
+
+3. Collisions
+
+![image](https://github.com/user-attachments/assets/df398d88-829b-44f1-8857-0fa6a80231f0)
+![image](https://github.com/user-attachments/assets/5ba78334-514c-4d29-aee7-c6e3a762dca4)
+
+
