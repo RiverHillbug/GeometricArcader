@@ -21,7 +21,7 @@ Formulas used in the project are:
 
 ![image](https://github.com/user-attachments/assets/a0af4469-27a9-4433-95e4-68548b2d0e90)
 
-2. Containment test to determine collisions, which is a meet (^) of the player position and the collider plane. Collision happens if the meet is equal to 0. The size of the player sprite is also taken into account here.
+2. Containment test to determine collisions, which is a meet (operator^) of the player position and the collider plane. Collision happens if the meet is equal to 0. The size of the player sprite is also taken into account here.
 
 And here is an overview of the calculations
 1. Player movement
