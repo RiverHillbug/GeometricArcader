@@ -16,6 +16,13 @@ I used geometric algebra formulas to
 3. Make the player character able to rotate around objects
 4. Determine if any collisions happen with the window borders
 
+Formulas used in the project are:
+1. Translation and Rotation
+
+![image](https://github.com/user-attachments/assets/a0af4469-27a9-4433-95e4-68548b2d0e90)
+
+2. Containment test to determine collisions, which is a meet (^) of the player position and the collider plane. Collision happens if the meet is equal to 0. The size of the player sprite is also taken into account here.
+
 And here is an overview of the calculations
 1. Player movement
 
@@ -27,7 +34,7 @@ And here is an overview of the calculations
 
 3. Collisions
 
-![image](https://github.com/user-attachments/assets/df398d88-829b-44f1-8857-0fa6a80231f0)
+![image](https://github.com/user-attachments/assets/782cc361-d754-44f9-ac35-3618fcfc32ad)
 ![image](https://github.com/user-attachments/assets/5ba78334-514c-4d29-aee7-c6e3a762dca4)
 
 
