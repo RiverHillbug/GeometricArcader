@@ -23,6 +23,8 @@ Formulas used in the project are:
 
 2. Containment test to determine collisions, which is a meet (operator^) of the player position and the collider plane. Collision happens if the meet is equal to 0. The size of the player sprite is also taken into account here.
 
+   *Edit: The correct way to do this in my game would be to join(playerPosition, colliderPlane) to get the distance between player and collider, and then subtract the sprite size from this value. This is how collisions were calculated in the first place but I mistakenly changed it to a meet on the last versison of my code.*
+
 And here is an overview of the calculations
 1. Player movement
 
