@@ -16,22 +16,22 @@ public:
 
 	inline bool DidCollide(const ThreeBlade& position, const float spriteWidth, const float spriteHeight, _In_ OneBlade& collision) const
 	{
-		if ((position & m_Top) - (spriteHeight / 2.0f) < 0.0f)
+		if ((position ^ m_Top) - (spriteHeight / 2.0f) < 0.0f)
 		{
 			collision = m_Top;
 			return true;
 		}
-		if ((position & m_Bottom) - (spriteHeight / 2.0f) < 0.0f)
+		if ((position ^ m_Bottom) - (spriteHeight / 2.0f) < 0.0f)
 		{
 			collision = m_Bottom;
 			return true;
 		}
-		if ((position & m_Left) - (spriteWidth / 2.0f) < 0.0f)
+		if ((position ^ m_Left) - (spriteWidth / 2.0f) < 0.0f)
 		{
 			collision = m_Left;
 			return true;
 		}
-		if ((position & m_Right) - (spriteWidth / 2.0f) < 0.0f)
+		if ((position ^ m_Right) - (spriteWidth / 2.0f) < 0.0f)
 		{
 			collision = m_Right;
 			return true;
