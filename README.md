@@ -39,9 +39,9 @@ And here is an overview of the calculations
 
 ### How To Play
 You can interact with the game with keyboard inputs.
- R -> Toggle player rotation
- S -> Player speed up / slow down
- C -> Cycle between pillars in game
- Arrow keys -> Move pillars
+ - R -> Toggle player rotation
+ - S -> Player speed up / slow down
+ - C -> Cycle between pillars in game
+ - Arrow keys -> Move pillars
 
 
