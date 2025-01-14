@@ -37,4 +37,11 @@ And here is an overview of the calculations
 ![image](https://github.com/user-attachments/assets/782cc361-d754-44f9-ac35-3618fcfc32ad)
 ![image](https://github.com/user-attachments/assets/5ba78334-514c-4d29-aee7-c6e3a762dca4)
 
+### How To Play
+You can interact with the game with keyboard inputs.
+ R -> Toggle player rotation
+ S -> Player speed up / slow down
+ C -> Cycle between pillars in game
+ Arrow keys -> Move pillars
+
 
