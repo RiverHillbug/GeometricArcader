@@ -186,10 +186,7 @@
   <ItemGroup>
     <ClCompile Include="..\3rdParty\FlyFish\FlyFish.cpp" />
     <ClCompile Include="Main.cpp" />
-    <ClCompile Include="MovePillarCommand.cpp" />
     <ClCompile Include="Pillar.cpp" />
-    <ClCompile Include="PlayerCharacter.cpp" />
-    <ClCompile Include="PPGAPillarMovement.cpp" />
     <ClCompile Include="PPGAPlayerMovement.cpp" />
     <ClCompile Include="PPGATransform.cpp" />
   </ItemGroup>
@@ -200,8 +197,6 @@
     <ClInclude Include="MovePillarCommand.h" />
     <ClInclude Include="Pillar.h" />
     <ClInclude Include="PillarsHolder.h" />
-    <ClInclude Include="PlayerCharacter.h" />
-    <ClInclude Include="PPGAPillarMovement.h" />
     <ClInclude Include="PPGAPlayerMovement.h" />
     <ClInclude Include="PPGATransform.h" />
     <ClInclude Include="ToggleSpeedUpCommand.h" />

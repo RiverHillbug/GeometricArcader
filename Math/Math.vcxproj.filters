@@ -18,9 +18,6 @@
     <ClCompile Include="Main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="PlayerCharacter.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="PPGATransform.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -30,21 +27,12 @@
     <ClCompile Include="Pillar.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="PPGAPillarMovement.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\3rdParty\FlyFish\FlyFish.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="MovePillarCommand.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ToggleSpeedUpCommand.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="PlayerCharacter.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="PPGATransform.h">
@@ -54,9 +42,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Pillar.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="PPGAPillarMovement.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="TogglePlayerRotationCommand.h">
