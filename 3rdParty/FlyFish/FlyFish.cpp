@@ -1,6 +1,6 @@
 #include "FlyFish.h"
 
-// Type conversions
+#pragma region Type Conversions
 
 [[nodiscard]] TwoBlade Motor::Grade2() const
 {
@@ -50,8 +50,8 @@
         data[15]
     };
 }
-
-// Copy/move assignments
+#pragma endregion
+#pragma region Copy/Move Assignments
 
 MultiVector& MultiVector::operator=(const ThreeBlade& b)
 {
@@ -137,9 +137,8 @@ MultiVector& MultiVector::operator=(Motor&& b) noexcept
     data[15] = b[7];
     return *this;
 };
-
+#pragma endregion
 #pragma region Geometric Product / GEP (*)
-// Geometric Product
 
 // MultiVector
 [[nodiscard]] MultiVector MultiVector::operator* (const MultiVector& b) const {
@@ -565,7 +564,6 @@ return res;
 };
 #pragma endregion
 #pragma region Inner Product / DOT (|)
-// Inner
 
 // MultiVector
 [[nodiscard]] MultiVector MultiVector::operator| (const MultiVector& b) const
@@ -934,7 +932,6 @@ return res;
 };
 #pragma endregion
 #pragma region Outer Product / Meet (^)
-// Outer Product
 
 // MultiVector
 [[nodiscard]] MultiVector MultiVector::operator^(const MultiVector& b) const
@@ -1311,7 +1308,6 @@ return res;
 }
 #pragma endregion
 #pragma region Regressive Product / Join (&)
-// Regressive Product
 
 // MultiVector
 [[nodiscard]] MultiVector MultiVector::operator& (const MultiVector& b) const
@@ -1663,7 +1659,7 @@ return res;
 }
 #pragma endregion
 #pragma region Dual Operator (!)
-// Dual operator
+
 [[nodiscard]] MultiVector MultiVector::operator! () const
 {
     return MultiVector(
