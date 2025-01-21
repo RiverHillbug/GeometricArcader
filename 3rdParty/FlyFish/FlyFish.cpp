@@ -138,6 +138,7 @@ MultiVector& MultiVector::operator=(Motor&& b) noexcept
     return *this;
 };
 
+#pragma region Geometric Product / GEP (*)
 // Geometric Product
 
 // MultiVector
@@ -562,7 +563,8 @@ return res;
     res[7] = b[7] * data[0] + b[4] * data[1] + b[5] * data[2] + b[6] * data[3] + b[3] * data[6] + b[2] * data[5] + b[1] * data[4] + b[0] * data[7];
     return res;
 };
-
+#pragma endregion
+#pragma region Inner Product / DOT (|)
 // Inner
 
 // MultiVector
@@ -930,7 +932,8 @@ return res;
     res[7] = data[0] * b[7];
     return res;
 };
-
+#pragma endregion
+#pragma region Outer Product / Meet (^)
 // Outer Product
 
 // MultiVector
@@ -1306,7 +1309,8 @@ return res;
     res[15] = data[7] * b[0] + data[4] * b[1] + data[5] * b[2] + data[6] * b[3] + data[3] * b[6] + data[2] * b[5] + data[1] * b[4] + data[0] * b[7];
     return res;
 }
-
+#pragma endregion
+#pragma region Regressive Product / Join (&)
 // Regressive Product
 
 // MultiVector
@@ -1657,7 +1661,8 @@ return res;
     res[0] = b[0] * data[7] + b[1] * data[4] + b[2] * data[5] + b[3] * data[6] + b[6] * data[3] + b[5] * data[2] + b[4] * data[1] + b[15] * data[0];
     return res;
 }
-
+#pragma endregion
+#pragma region Dual Operator (!)
 // Dual operator
 [[nodiscard]] MultiVector MultiVector::operator! () const
 {
@@ -1712,3 +1717,4 @@ return res;
         data[0]
     );
 }
+#pragma endregion

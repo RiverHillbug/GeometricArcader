@@ -53,7 +53,7 @@ void PPGAPlayerMovement::Update(const float deltaTime)
 	{
 		m_CurrentVelocity = Motor::Translation(m_CurrentSpeed, m_CurrentDirection);
 		Motor movementThisFrame{ m_CurrentVelocity * deltaTime };
-		movementThisFrame[0] = 1.0f;	// norm is still 1
+		movementThisFrame[0] = 1.0f;	// the scalar is still 1
 		ThreeBlade newTransform{ (movementThisFrame * m_pOwnerTransform->GetPosition() * ~movementThisFrame).Grade3() };	// make sandwich
 
 		if (newTransform[2] <= 0.0f)
