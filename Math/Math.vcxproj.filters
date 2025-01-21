@@ -18,15 +18,6 @@
     <ClCompile Include="Main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="SoundManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="GameEvents.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ToggleSoundCommand.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="PlayerCharacter.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -42,32 +33,14 @@
     <ClCompile Include="PPGAPillarMovement.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="LevelBounds.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\3rdParty\FlyFish\FlyFish.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="MovePillarCommand.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="CyclePillarsCommand.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="EventParams.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="GameEvents.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="SoundManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ToggleSoundCommand.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="ToggleSpeedUpCommand.h">
       <Filter>Header Files</Filter>
     </ClInclude>
