@@ -47,6 +47,6 @@ You can interact with the game with keyboard inputs.
  - Arrow keys -> Move pillars
 
 
-This project was built in my own game engine, FluffyEngine.*
+_This project was built in my own game engine, FluffyEngine._
 
 
